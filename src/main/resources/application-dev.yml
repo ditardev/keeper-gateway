@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  ip: localhost
+
+logging:
+  level:
+    root: info
+  file:
+    name: ../logs/gateway/gateway.log
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: eureka-server
+          uri: http://${server.ip}:8761
+          predicates:
+            Path=/eureka/web
+          filters:
+            SetPath=/
+
+        - id: eureka-server-static
+          uri: http://${server.ip}:8761
+          predicates:
+            - Path=/eureka/**
+
+        - id: security-service
+          uri: lb://security-service
+          predicates:
+            - Path=/api/auth/**

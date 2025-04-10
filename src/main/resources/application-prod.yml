@@ -1,0 +1,56 @@
+server:
+  port: 18080
+  ip: 192.168.192.81
+
+logging:
+  level:
+    root: warn
+  file:
+    name: logs/gateway/gateway.log
+
+spring:
+  application.name: api-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        - id: eureka-server
+          uri: http://${server.ip}:8761
+          predicates:
+            Path=/eureka/web
+          filters:
+            SetPath=/
+
+        - id: eureka-server-static
+          uri: http://${server.ip}:8761
+          predicates:
+            - Path=/eureka/**
+
+        - id: security-service
+          uri: lb://security-service
+          predicates:
+            - Path=/api/auth/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${server.ip}:8761/eureka
+
+  instance:
+    statusPageUrlPath: actuator/info
+    healthCheckUrlPath: actuator/health
+    instance-id: "${spring.application.name}:${random.uuid}"

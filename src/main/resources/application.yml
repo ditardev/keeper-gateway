@@ -1,0 +1,58 @@
+spring:
+  profiles:
+    active: dev
+  #    active: prod
+  application:
+    name: api-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${server.ip}:8761/eureka
+
+  instance:
+    statusPageUrlPath: gateway/info
+    healthCheckUrlPath: gateway/health
+    instance-id: "${spring.application.name}:${random.uuid}" #возможность поднимать несколько микрух. запросы будут идти поочерёдно на каждый
+
+#http://localhost:8080/gateway/info/health
+
+management:
+  endpoint:
+    info:
+      enable: true
+  endpoints:
+    web:
+      cors:
+        allowed-origins: "*"
+        allowed-headers: "*"
+        allowed-methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+      exposure:
+        include: info,health,metrics,prometheus,loggers,gateway
+      base-path: /gateway/info
+  metrics:
+    enable:
+      jvm: true
