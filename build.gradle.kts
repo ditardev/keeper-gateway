@@ -28,10 +28,12 @@ dependencies {
 	//Eureka
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.2.1")
 
+	//Gateway
+	implementation("org.springframework.cloud:spring-cloud-starter-gateway:4.2.2")
+
 	//Addiction
 	implementation("io.micrometer:micrometer-registry-prometheus:1.14.5")
 	implementation("org.springframework.boot:spring-boot-starter-actuator:3.4.4")
-	implementation("org.springframework.cloud:spring-cloud-starter-gateway:4.2.2")
 	implementation("org.springframework.boot:spring-boot-devtools:3.4.4")
 	implementation("org.springframework.boot:spring-boot-configuration-processor:3.4.4")
 
