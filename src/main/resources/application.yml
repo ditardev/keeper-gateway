@@ -3,7 +3,7 @@ spring:
     active: dev
   #    active: prod
   application:
-    name: api-gateway-service
+    name: keeper-gateway-service
   cloud:
     gateway:
       discovery:
