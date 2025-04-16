@@ -1,12 +1,10 @@
 server:
+  appName: keeper-gateway-service
   port: 8080
   ip: localhost
-
-logging:
-  level:
-    root: info
-  file:
-    name: ../logs/gateway/gateway.log
+  logging:
+    level: info
+    filePath: ../logs/security/security.log
 
 spring:
   cloud:

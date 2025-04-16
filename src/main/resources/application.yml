@@ -1,9 +1,12 @@
+#Spring Gateway Properties
 spring:
   profiles:
     active: dev
   #    active: prod
+
   application:
-    name: keeper-gateway-service
+    name: ${server.appName}
+
   cloud:
     gateway:
       discovery:
@@ -23,6 +26,7 @@ spring:
               - DELETE
               - OPTIONS
 
+#Eureka
 eureka:
   client:
     service-url:
@@ -31,10 +35,17 @@ eureka:
   instance:
     statusPageUrlPath: gateway/info
     healthCheckUrlPath: gateway/health
-    instance-id: "${spring.application.name}:${random.uuid}" #возможность поднимать несколько микрух. запросы будут идти поочерёдно на каждый
+    instance-id: "${spring.application.name}:${spring.profiles.active}:${random.uuid}"
+    #http://localhost:8080/gateway/info/health
 
-#http://localhost:8080/gateway/info/health
+#Logging
+logging:
+  level:
+    root: ${server.logging.level}
+  file:
+    name: ${server.logging.filePath}
 
+#Prometheus
 management:
   endpoint:
     info:
