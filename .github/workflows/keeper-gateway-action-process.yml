@@ -1,0 +1,16 @@
+name: gateway-action-process
+env:
+  APPLICATION_NAME : "Keeper-Gateway"
+on: 
+  push:
+    branches: 
+      - main
+
+jobs:
+  Keeper-gateway:
+    runs-on: self-hosted
+    
+    steps:
+      - name: PrintAppData
+        run : |
+          echo "Application name2: ${{ env.APPLICATION_NAME}}"
