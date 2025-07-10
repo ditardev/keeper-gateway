@@ -38,6 +38,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-configuration-processor:3.4.4")
 
 	compileOnly("org.projectlombok:lombok:1.18.38")
+	implementation(kotlin("script-runtime"))
 }
 
 kotlin {
@@ -48,4 +49,10 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks {
+	jar {
+		enabled = false
+	}
 }
