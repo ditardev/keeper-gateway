@@ -1,7 +1,7 @@
 server:
   appName: keeper-gateway-service
   port: 8080
-  ip: localhost
+  ip: 192.168.100.8
   logging:
     level: info
     filePath: ../logs/gateway/gateway.log
@@ -26,3 +26,13 @@ spring:
           uri: lb://keeper-security-service
           predicates:
             - Path=/api/auth/**
+
+        - id: keeper-panda-service
+          uri: lb://keeper-panda-service
+          predicates:
+            - Path=/api/panda/**
+
+        - id: keeper-events-service
+          uri: lb://keeper-events-service
+          predicates:
+            - Path=/api/events/**
