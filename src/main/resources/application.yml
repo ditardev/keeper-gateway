@@ -26,7 +26,11 @@ spring:
               - PUT
               - DELETE
               - OPTIONS
-
+server:
+  shutdown: graceful
+  servlet:
+    session:
+      timeout: 30s
 #Eureka
 eureka:
   client:
