@@ -22,7 +22,17 @@ spring:
           predicates:
             - Path=/eureka/**
 
-        - id: security-service
-          uri: lb://security-service
+        - id: keeper-security-service
+          uri: lb://keeper-security-service
           predicates:
             - Path=/api/auth/**
+
+        - id: keeper-panda-service
+          uri: lb://keeper-panda-service
+          predicates:
+            - Path=/api/panda/**
+
+        - id: keeper-events-service
+          uri: lb://keeper-events-service
+          predicates:
+            - Path=/api/events/**
