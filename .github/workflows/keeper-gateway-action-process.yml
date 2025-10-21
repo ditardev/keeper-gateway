@@ -1,10 +1,12 @@
 name: gateway-action-process
 env:
-  APPLICATION_NAME : "Keeper-Gateway"
+  APPLICATION_NAME : "keeper_gateway"
+  DIR_NAME: "_docker/core"
+  COMPOSE_NAME: "keeper-core-compose.yml"
 on: 
   push:
-    branches: 
-      - main
+    branches:
+      - prod
 
 jobs:
   Keeper-gateway:
@@ -14,3 +16,17 @@ jobs:
       - name: PrintAppData
         run : |
           echo "Application name2: ${{ env.APPLICATION_NAME}}"
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          clean: 'false'
+      - name: Gradle ${{env.APP_NAME}} clean-build
+        run : |
+          gradle clean build -x test
+      - name: Docker ${{env.APP_NAME}} Update
+        run : |
+          bash ${{env.APP_NAME}}_update.sh
+      - name: Docker Compose up
+        run : |
+          cd /home/ditar/DataDrive/actions-runner/keeper-actions/${{env.DIR_NAME}}
+          docker compose -f ${{env.COMPOSE_NAME}} up -d

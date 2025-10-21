@@ -36,7 +36,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://${server.ip}:8761/eureka
-
   instance:
     statusPageUrlPath: gateway/info
     healthCheckUrlPath: gateway/health
