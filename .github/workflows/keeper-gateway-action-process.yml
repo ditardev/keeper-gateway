@@ -1,6 +1,6 @@
 name: gateway-action-process
 env:
-  APPLICATION_NAME : "keeper_gateway"
+  APP : "keeper_gateway"
   DIR_NAME: "_docker/core"
   COMPOSE_NAME: "keeper-core-compose.yml"
 on: 
