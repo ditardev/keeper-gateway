@@ -1,0 +1,28 @@
+server:
+  appName: keeper-gateway-service
+  port: 18080
+  ip: 192.168.192.194
+  logging:
+    level: info
+    filePath: ../logs/security/security.log
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: eureka-server
+          uri: http://${server.ip}:8761
+          predicates:
+            Path=/eureka/web
+          filters:
+            SetPath=/
+
+        - id: eureka-server-static
+          uri: http://${server.ip}:8761
+          predicates:
+            - Path=/eureka/**
+
+        - id: security-service
+          uri: lb://security-service
+          predicates:
+            - Path=/api/auth/**
