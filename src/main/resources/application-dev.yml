@@ -26,3 +26,8 @@ spring:
           uri: lb://keeper-security-service
           predicates:
             - Path=/api/auth/**
+
+        - id: keeper-telbot-service
+          uri: lb://keeper-telbot-service
+          predicates:
+            - Path=/api/telbot**
