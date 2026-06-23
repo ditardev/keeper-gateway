@@ -9,6 +9,12 @@ server:
 spring:
   cloud:
     gateway:
+      httpclient:
+        connect-timeout: 10000
+        response-timeout: 600s
+        pool:
+          type: elastic
+          max-idle-time: 300s
       routes:
         - id: eureka-server
           uri: http://${server.ip}:8761

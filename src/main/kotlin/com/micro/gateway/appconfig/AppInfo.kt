@@ -5,7 +5,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.event.ContextClosedEvent
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
-import java.util.*
+import java.util.Date
 
 @Component
 class AppInfo {
@@ -21,6 +21,9 @@ class AppInfo {
     @Value("\${server.ip}")
     private val serverIp: String? = null
 
+    @Value("\${server.version}")
+    private val version: String? = null
+
     private val startDelimiter = "=============^_^============="
     private val stopDelimiter = "============================="
 
@@ -34,6 +37,7 @@ class AppInfo {
                 "Configuration: " + activeProfile + ln +
                 "Server port: " + serverPort + ln +
                 "Server ip: " + serverIp + ln +
+                "Server version: " + version + ln +
                 "Start date time: " + Date() + ln +
                 stopDelimiter
         println(builder)

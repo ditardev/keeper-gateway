@@ -1,6 +1,6 @@
 #!/bin/bash
-readonly container_name=keeper_gateway_c
-readonly image_name=keeper_gateway_img
+readonly container_name=keeper-gateway-c
+readonly image_name=keeper-gateway-img
 
 echo $container_name
 echo $image_name
