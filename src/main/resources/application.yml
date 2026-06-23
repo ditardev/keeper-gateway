@@ -1,7 +1,7 @@
 #Spring Gateway Properties
 spring:
   profiles:
-    active: lime
+    active: dev
   #    active: dev
   #    active: prod
 
