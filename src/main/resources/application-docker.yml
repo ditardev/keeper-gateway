@@ -1,7 +1,11 @@
 server:
   appName: keeper-gateway-service
   port: 8080
-  ip: 192.168.100.8
+  ip: host.docker.internal
+  eureka:
+    enabled: true
+    hostname: host.docker.internal
+    prefer-ip: false
   logging:
     level: info
     filePath: ../logs/gateway/gateway.log

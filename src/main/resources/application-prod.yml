@@ -1,7 +1,9 @@
 server:
   appName: keeper-gateway-service
   port: 18080
-  ip: 192.168.192.194
+  ip: 0.0.0.0
+  eureka:
+    enabled: true
   logging:
     level: info
     filePath: ../logs/security/security.log

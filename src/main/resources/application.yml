@@ -2,12 +2,10 @@
 spring:
   profiles:
     active: dev
-  #    active: dev
   #    active: prod
 
   application:
     name: ${server.appName}
-
   cloud:
     gateway:
       discovery:
@@ -28,12 +26,20 @@ spring:
               - OPTIONS
 server:
   shutdown: graceful
+  version: ${projectVersion}
   servlet:
     session:
       timeout: 30s
 #Eureka
 eureka:
   client:
+    should-enforce-registration-at-init: ${server.eureka.enabled}
+    register-with-eureka: ${server.eureka.enabled}
+    fetch-registry: ${server.eureka.enabled}
+    enabled: ${server.eureka.enabled}
+    should-unregister-on-shutdown: true
+    registry-fetch-interval-seconds: 30
+    eureka-service-url-poll-interval-seconds: 60
     service-url:
       defaultZone: http://${server.ip}:8761/eureka
   instance:
@@ -41,7 +47,10 @@ eureka:
     healthCheckUrlPath: gateway/health
     instance-id: "${spring.application.name}:${spring.profiles.active}:${random.uuid}"
     #http://localhost:8080/gateway/info/health
-
+    hostname: ${server.eureka.hostname:${spring.cloud.client.hostname}}
+    prefer-ip-address: ${server.eureka.prefer-ip:true}
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
 #Logging
 logging:
   level:
