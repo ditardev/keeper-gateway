@@ -33,19 +33,19 @@ spring:
         - id: keeper-security-service
           uri: lb://keeper-security-service
           predicates:
-            - Path=/api/{version:v[0-9]+}/auth/**
+            - Path=/api/v*/auth/**
 
         - id: keeper-panda-service
           uri: lb://keeper-panda-service
           predicates:
-            - Path=/api/{version:v[0-9]+}/panda/**
+            - Path=/api/v*/panda/**
 
         - id: keeper-events-service
           uri: lb://keeper-events-service
           predicates:
-            - Path=/api/{version:v[0-9]+}/events/**
+            - Path=/api/v*/events/**
 
         - id: keeper-telbot-service
           uri: lb://keeper-telbot-service
           predicates:
-            - Path=/api/{version:v[0-9]+}/telbot**
+            - Path=/api/v*/telbot**
