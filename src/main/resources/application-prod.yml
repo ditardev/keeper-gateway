@@ -53,6 +53,6 @@ spring:
             - Path=/api/v*/telbot**
 
         - id: keeper-storage
-          uri: lb://keeper-storage
+          uri: http://keeper-storage:8020
           predicates:
             - Path=/api/v*/storage/**
