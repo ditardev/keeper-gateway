@@ -1,8 +1,7 @@
 #Spring Gateway Properties
 spring:
   profiles:
-    active: dev
-  #    active: prod
+    active: ${SPRING_PROFILES_ACTIVE:dev}
 
   application:
     name: ${server.appName}
