@@ -21,14 +21,14 @@ spring:
           max-idle-time: 300s
       routes:
         - id: keeper-eureka
-          uri: http://${server.ip}:8761
+          uri: http://keeper-eureka:8761
           predicates:
             Path=/eureka/web
           filters:
             SetPath=/
 
         - id: keeper-eureka-static
-          uri: http://${server.ip}:8761
+          uri: http://keeper-eureka:8761
           predicates:
             - Path=/eureka/**
 
