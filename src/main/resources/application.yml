@@ -6,6 +6,8 @@ spring:
 
   application:
     name: ${server.appName}
+  codec:
+    max-in-memory-size: 2GB
   cloud:
     gateway:
       discovery:
@@ -18,6 +20,7 @@ spring:
           '[/**]':
             allowedOrigins: "*"
             allowedHeaders: "*"
+            exposedHeaders: "*"
             allowedMethods:
               - GET
               - POST
