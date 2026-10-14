@@ -54,3 +54,23 @@ spring:
           uri: lb://keeper-storage
           predicates:
             - Path=/api/v*/storage/**
+
+        - id: knowledge-mcp-wms-vek
+          uri: http://${server.ip}:18091
+          predicates:
+            - Path=/mcp/wms_vek,/mcp/wms_vek/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            response-timeout: 86400000
+            connect-timeout: 10000
+
+        - id: knowledge-mcp-wms-euro
+          uri: http://${server.ip}:18092
+          predicates:
+            - Path=/mcp/wms_euro,/mcp/wms_euro/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            response-timeout: 86400000
+            connect-timeout: 10000
